@@ -1,0 +1,67 @@
+Criaçao de templates.
+
+1) Abrir pycharm
+2) new - Project
+3) nome do projeto? senac
+obs: verificar que create a main.py esteja desmarcado
+4)  cliclar no botao create
+5) alt + f12 - abrir terminal
+6) alterar para command prompt
+7) pip install django
+obs: cls para limpar o terminal
+8) django-admin startproject setup . 
+9) django-admin startapp cursos
+obs: para rodar o servidor  py manage.py runserver
+obs :para parar o servidor ctrl + c
+10) configurar setup/settings
+	LANGUAGE_CODE = 'pt-br'
+
+	TIME_ZONE = 'America/Sao_Paulo'
+
+11) editar cursos/ cursos.views
+from django.shortcuts import render
+def index(request):
+    return render(request, 'index.html')
+12) inserir o caminho do template em setup.settings na variavel Dirs (próximo linha 57,58)
+'DIRS': [os.path.join(BASE_DIR, 'templates')]
+obs pode aprecer messagem de erro , pois ha necessidades de importar o os (import os)
+13 criar a pastas templates dentro do senac
+13.1 clicar com o botao direito 
+13.2 new directory(informar o nome do projeto templates)
+
+14) criar arquivo Html dentro da pasta templates
+14.1 clicar com o botao  direito sobre a pasta templates
+14.2 new... Html files.(informar o nome index.html)
+
+
+15 instalar o app cursos e. setup/settings
+	INSTALLED_APPS = [
+		'cursos',
+]
+
+16) definir setup/urls
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include ('cursos.urls'))
+    
+]
+
+17) criar o arquivo cursos/urls(urls.py)
+	from  django.urls import  path
+	from cursos.views import  index
+
+	urlpatterns =[
+    	path('', index)
+	]
+
+
+      
+
+
+
+
+
